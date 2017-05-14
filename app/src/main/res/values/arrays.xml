@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="SlideMenuActivityMain">
+        <item>数据备份</item>
+        <item>数据还原</item>
+    </string-array>
+</resources>

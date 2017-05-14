@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">理财</string>
+    <string name="welcome_info">欢迎您使用随手记账！</string>
+    <string name="grid_payout_add">记录消费</string>
+    <string name="grid_payout_manage">查询消费</string>
+    <string name="grid_account_manage">账本管理</string>
+    <string name="grid_statistics_manage">统计管理</string>
+    <string name="grid_category_manage">类别管理</string>
+    <string name="grid_user_manage">人员管理</string>
+</resources>
