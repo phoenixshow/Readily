@@ -15,4 +15,9 @@
         <!-- 防止ListView滚动的时候背景变黑，所以设为透明 -->
         <item name="android:cacheColorHint">@color/transparent</item>
     </style>
+
+    <style name="ListViewItemStyle">
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
 </resources>

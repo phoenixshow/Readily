@@ -1,6 +1,7 @@
 package com.phoenix.readily.view;
 
 import android.app.Activity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -23,9 +24,13 @@ public class SlideMenuView {
     private List<SlideMenuItem> menuList;
     private boolean isClosed;
     private RelativeLayout bottomBoxLayout;
+    private OnSlideMenuListener onSlideMenuListener;
 
     public SlideMenuView(Activity activity) {
         this.activity = activity;
+
+        this.onSlideMenuListener = (OnSlideMenuListener) activity;
+
         initVariable();
         initView();
         initListeners();
@@ -42,6 +47,19 @@ public class SlideMenuView {
 
     private void initListeners() {
         bottomBoxLayout.setOnClickListener(new OnSlideMenuClick());
+        //在触屏的模式下能够获取焦点
+        bottomBoxLayout.setFocusableInTouchMode(true);
+        bottomBoxLayout.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_MENU &&
+                        event.getAction() == KeyEvent.ACTION_UP){
+                    toggle();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     //监听菜单的点击事件
@@ -73,7 +91,7 @@ public class SlideMenuView {
     }
 
     //开关方法控制菜单打开/关闭
-    private void toggle(){
+    public void toggle(){
         if (isClosed){
             open();
         }else {
@@ -97,7 +115,13 @@ public class SlideMenuView {
     private class OnSlideMenuItemClick implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+            SlideMenuItem slideMenuItem = (SlideMenuItem) parent.getItemAtPosition(position);
+            onSlideMenuListener.onSlideMenuItemClick(slideMenuItem);
         }
+    }
+
+    //菜单监听器接口
+    public interface OnSlideMenuListener{
+        public abstract void onSlideMenuItemClick(SlideMenuItem item);
     }
 }

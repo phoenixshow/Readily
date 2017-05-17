@@ -47,4 +47,9 @@ public class FrameActivity extends BaseActivity {
         }
         slideMenuView.bindList();
     }
+
+    //切换菜单开闭
+    protected void slideMenuToggle(){
+        slideMenuView.toggle();
+    }
 }

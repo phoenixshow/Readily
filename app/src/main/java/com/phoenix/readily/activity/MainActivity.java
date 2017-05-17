@@ -1,13 +1,17 @@
 package com.phoenix.readily.activity;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.phoenix.readily.R;
 import com.phoenix.readily.activity.base.FrameActivity;
 import com.phoenix.readily.adapter.AppGridAdapter;
+import com.phoenix.readily.view.SlideMenuItem;
+import com.phoenix.readily.view.SlideMenuView;
 
-public class MainActivity extends FrameActivity {
+public class MainActivity extends FrameActivity implements SlideMenuView.OnSlideMenuListener {
     private GridView main_body_gv;
     private AppGridAdapter gridAdapter;
 
@@ -34,10 +38,27 @@ public class MainActivity extends FrameActivity {
 
     //初始化监听
     private void initListeners() {
+        main_body_gv.setOnItemClickListener(new OnGridItemClickListener());
     }
 
     //初始化数据
     private void initData() {
         main_body_gv.setAdapter(gridAdapter);
+    }
+
+    @Override
+    public void onSlideMenuItemClick(SlideMenuItem item) {
+        showMsg(item.getTitle());
+    }
+
+    private class OnGridItemClickListener implements AdapterView.OnItemClickListener{
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            String menuName = (String) parent.getAdapter().getItem(position);
+            if (menuName.equals(getString(R.string.grid_user_manage))){//人员管理
+                openActivity(UserActivity.class);
+                return;
+            }
+        }
     }
 }

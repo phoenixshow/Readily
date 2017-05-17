@@ -23,6 +23,18 @@ public abstract class SimpleBaseAdapter extends BaseAdapter {
         layoutInflater = LayoutInflater.from(context);
     }
 
+    public void setList(List list){
+        datas = list;
+    }
+
+    public void clear(){
+        datas.clear();
+    }
+
+    public void updateDisplay(){
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getCount() {
         return datas!=null ? datas.size() : 0;

@@ -7,4 +7,21 @@
     <string name="grid_statistics_manage">统计管理</string>
     <string name="grid_category_manage">类别管理</string>
     <string name="grid_user_manage">人员管理</string>
+
+    <string name="hint_user_name">人员名称</string>
+
+    <string name="title_add">新建</string>
+    <string name="title_edit">修改</string>
+
+    <string name="button_text_save">保存</string>
+    <string name="button_text_cancel">取消</string>
+
+    <string name="dialog_title_user">%s人员</string>
+
+    <string name="check_text_chinese_english_num">%s必须是中文、英文与数字</string>
+    <string name="check_text_user_exist">该用户已经存在，请换个用户名称</string>
+
+    <string name="tips_delete_fail">删除失败</string>
+    <string name="tips_add_fail">保存失败</string>
+    <string name="tips_add_success">保存成功</string>
 </resources>
