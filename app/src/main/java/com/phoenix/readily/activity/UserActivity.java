@@ -3,9 +3,13 @@ package com.phoenix.readily.activity;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.phoenix.readily.R;
@@ -24,6 +28,7 @@ public class UserActivity extends FrameActivity implements SlideMenuView.OnSlide
     private ListView user_list_lv;
     private UserAdapter userAdapter;
     private UserBusiness userBusiness;
+    private Users user;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -48,6 +53,8 @@ public class UserActivity extends FrameActivity implements SlideMenuView.OnSlide
 
     //初始化监听
     private void initListeners() {
+        //注册上下文菜单
+        registerForContextMenu(user_list_lv);
     }
 
     //初始化数据
@@ -59,6 +66,36 @@ public class UserActivity extends FrameActivity implements SlideMenuView.OnSlide
             userAdapter.clear();
             userAdapter.updateList();
         }
+        setTitle();
+    }
+
+    private void setTitle(){
+        setTopBarTitle(getString(R.string.title_user,
+                new Object[]{userAdapter.getCount()}));
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        //得到菜单信息
+        AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        ListAdapter listAdapter = user_list_lv.getAdapter();
+        user = (Users) listAdapter.getItem(acmi.position);
+        menu.setHeaderIcon(R.drawable.user_small_icon);
+        menu.setHeaderTitle(user.getUserName());
+        createContextMenu(menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case 1://修改
+                showUserAddOrEditDialog(user);
+                break;
+            case 2://删除
+                delete();
+                break;
+        }
+        return super.onContextItemSelected(item);
     }
 
     @Override
@@ -66,6 +103,24 @@ public class UserActivity extends FrameActivity implements SlideMenuView.OnSlide
         slideMenuToggle();
         if (item.getItemId() == 0){
             showUserAddOrEditDialog(null);
+        }
+    }
+
+    private void delete() {
+        String msg = getString(R.string.dialog_message_user_delete,
+                new Object[]{user.getUserName()});
+        showAlertDialog(R.string.dialog_title_delete, msg, new OnDeleteClickListener());
+    }
+
+    private class OnDeleteClickListener implements DialogInterface.OnClickListener{
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            boolean result = userBusiness.hideUserByUserId(user.getUserId());
+            if (result){
+                initData();
+            }else {
+                showMsg(getString(R.string.tips_delete_fail));
+            }
         }
     }
 

@@ -9,13 +9,22 @@
         <item>新建人员</item>
     </string-array>
 
+    <string-array name="SlideMenuAccountBook">
+        <item>新建账本</item>
+    </string-array>
+
     <string-array name="InitDefaultUserName">
         <item>王小强</item>
         <item>小李</item>
         <item>小张</item>
     </string-array>
 
+    <string-array name="InitDefaultAccountBookName">
+        <item>默认账本</item>
+    </string-array>
+
     <string-array name="SQLiteDAOClassName">
         <item>UserDAO</item>
+        <item>AccountBookDAO</item>
     </string-array>
 </resources>

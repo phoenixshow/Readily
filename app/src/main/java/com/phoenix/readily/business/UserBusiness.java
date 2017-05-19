@@ -1,5 +1,6 @@
 package com.phoenix.readily.business;
 
+import android.content.ContentValues;
 import android.content.Context;
 
 import com.phoenix.readily.business.base.BaseBusiness;
@@ -67,5 +68,13 @@ public class UserBusiness extends BaseBusiness {
         }else {
             return false;
         }
+    }
+
+    //根据用户ID隐藏用户
+    public boolean hideUserByUserId(int userId){
+        String condition = " userId="+userId;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("state", 0);
+        return userDAO.updateUser(condition, contentValues);
     }
 }

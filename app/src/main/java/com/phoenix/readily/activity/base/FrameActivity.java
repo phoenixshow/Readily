@@ -4,10 +4,12 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.phoenix.readily.R;
 import com.phoenix.readily.view.SlideMenuItem;
@@ -51,5 +53,15 @@ public class FrameActivity extends BaseActivity {
     //切换菜单开闭
     protected void slideMenuToggle(){
         slideMenuView.toggle();
+    }
+
+    protected void createContextMenu(Menu menu){
+        menu.add(0, 1, 0, R.string.menu_text_edit);
+        menu.add(0, 2, 0, R.string.menu_text_delete);
+    }
+
+    protected void setTopBarTitle(String title){
+        TextView top_title_tv = (TextView) findViewById(R.id.top_title_tv);
+        top_title_tv.setText(title);
     }
 }

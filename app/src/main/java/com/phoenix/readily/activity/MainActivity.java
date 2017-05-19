@@ -59,6 +59,10 @@ public class MainActivity extends FrameActivity implements SlideMenuView.OnSlide
                 openActivity(UserActivity.class);
                 return;
             }
+            if (menuName.equals(getString(R.string.grid_account_manage))){//账本管理
+                openActivity(AccountBookActivity.class);
+                return;
+            }
         }
     }
 }

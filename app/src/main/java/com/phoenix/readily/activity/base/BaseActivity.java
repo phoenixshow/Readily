@@ -1,10 +1,13 @@
 package com.phoenix.readily.activity.base;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.widget.Toast;
+
+import com.phoenix.readily.R;
 
 import java.lang.reflect.Field;
 
@@ -41,5 +44,21 @@ public class BaseActivity extends Activity {
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    protected AlertDialog showAlertDialog(int titleResId, String msg,
+                                          DialogInterface.OnClickListener clickListener){
+        String title = getResources().getString(titleResId);
+        return showAlertDialog(title, msg, clickListener);
+    }
+
+    protected AlertDialog showAlertDialog(String title, String msg,
+                                          DialogInterface.OnClickListener clickListener){
+        return new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(msg)
+                .setPositiveButton(R.string.button_text_yes, clickListener)
+                .setNegativeButton(R.string.button_text_no, null)
+                .show();
     }
 }

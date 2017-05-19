@@ -70,6 +70,10 @@ public class UserDAO extends SQLiteDAOBase {
 
     public boolean updateUser(String condition, Users user){
         ContentValues contentValues = createParms(user);
+        return updateUser(condition, contentValues);
+    }
+
+    public boolean updateUser(String condition, ContentValues contentValues){
         return getDatabase().update(getTableNameAndPK()[0], contentValues,
                 condition, null) >= 0;
     }
