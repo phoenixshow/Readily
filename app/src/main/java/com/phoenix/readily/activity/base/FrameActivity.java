@@ -64,4 +64,9 @@ public class FrameActivity extends BaseActivity {
         TextView top_title_tv = (TextView) findViewById(R.id.top_title_tv);
         top_title_tv.setText(title);
     }
+
+    protected void removeBottomBox(){
+        slideMenuView = new SlideMenuView(this);
+        slideMenuView.removeBottomBox();
+    }
 }

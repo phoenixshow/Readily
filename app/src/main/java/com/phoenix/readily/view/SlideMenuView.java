@@ -29,11 +29,12 @@ public class SlideMenuView {
     public SlideMenuView(Activity activity) {
         this.activity = activity;
 
-        this.onSlideMenuListener = (OnSlideMenuListener) activity;
-
-        initVariable();
         initView();
-        initListeners();
+        if (activity instanceof OnSlideMenuListener) {
+            this.onSlideMenuListener = (OnSlideMenuListener) activity;
+            initVariable();
+            initListeners();
+        }
     }
 
     private void initVariable() {
@@ -60,6 +61,11 @@ public class SlideMenuView {
                 return false;
             }
         });
+    }
+
+    public void removeBottomBox() {
+        RelativeLayout main_rl = (RelativeLayout) activity.findViewById(R.id.main_rl);
+        main_rl.removeView(bottomBoxLayout);
     }
 
     //监听菜单的点击事件

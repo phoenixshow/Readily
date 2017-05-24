@@ -7,7 +7,7 @@ import android.content.Context;
  */
 
 public class BaseBusiness {
-    private Context context;
+    protected Context context;
 
     public BaseBusiness(Context context) {
         this.context = context;
