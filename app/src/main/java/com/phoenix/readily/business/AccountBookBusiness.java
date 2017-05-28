@@ -123,4 +123,14 @@ public class AccountBookBusiness extends BaseBusiness {
         contentValues.put("state", 0);
         return accountBookDAO.updateAccountBook(condition, contentValues);
     }
+
+    //获取默认账本
+    public AccountBook getDefaultAccountBook(){
+        List<AccountBook> list = accountBookDAO.getAccountBook(" and isDefault=1 and state=1");
+        if(list!=null && list.size()==1){
+            return list.get(0);
+        }else{
+            return null;
+        }
+    }
 }

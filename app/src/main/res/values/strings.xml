@@ -10,6 +10,10 @@
 
     <string name="hint_user_name">人员名称</string>
     <string name="hint_account_book_name">账本名称</string>
+    <string name="hint_enter_amount">请输入金额</string>
+    <string name="hint_enter_category">请输入或选择消费类别</string>
+    <string name="hint_select_user">请选择消费人，第一位为付款人</string>
+    <string name="hint_enter_comment">请输入消费心得或备注</string>
 
     <string name="title_add">新建</string>
     <string name="title_edit">修改</string>
@@ -22,6 +26,26 @@
     <string name="button_text_cancel">取消</string>
     <string name="button_text_yes">是</string>
     <string name="button_text_no">否</string>
+    <string name="button_text_select_account_book">选择账本</string>
+    <string name="button_text_enter_amount">输入金额</string>
+    <string name="button_text_select_category">选择类别</string>
+    <string name="button_text_select_date">选择日期</string>
+    <string name="button_text_select_type">计算方式</string>
+    <string name="button_text_select_user">消费人</string>
+    <string name="button_text_dot">.</string>
+    <string name="button_text_one">1</string>
+    <string name="button_text_two">2</string>
+    <string name="button_text_three">3</string>
+    <string name="button_text_four">4</string>
+    <string name="button_text_five">5</string>
+    <string name="button_text_six">6</string>
+    <string name="button_text_seven">7</string>
+    <string name="button_text_eight">8</string>
+    <string name="button_text_nine">9</string>
+    <string name="button_text_zero">0</string>
+    <string name="button_text_change">更正</string>
+    <string name="button_text_ok">确定</string>
+    <string name="button_text_back">返回</string>
 
     <string name="dialog_title_user">%s人员</string>
     <string name="dialog_title_delete">删除提示</string>
@@ -50,4 +74,11 @@
     <string name="spinner_please_choose">--请选择--</string>
 
     <string name="category_total">统计类别</string>
+    <string name="title_payout_add_or_edit">%s消费</string>
+    <string name="check_text_money">金额必须是数字，并且不能超过小数点后两位</string>
+    <string name="check_text_category_is_null">请选择一个消费类别</string>
+    <string name="check_text_date_is_after">请选择一个正确的日期</string>
+    <string name="check_text_payout_user_is_null">请选择消费人</string>
+    <string name="check_text_payout_user">均分或借贷请至少选择两个消费人</string>
+    <string name="check_text_payout_user2">个人消费请至少选择一个消费人</string>
 </resources>

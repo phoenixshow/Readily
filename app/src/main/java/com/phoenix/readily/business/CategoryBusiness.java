@@ -3,6 +3,7 @@ package com.phoenix.readily.business;
 import android.content.ContentValues;
 import android.content.Context;
 import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 
 import com.phoenix.readily.R;
 import com.phoenix.readily.business.base.BaseBusiness;
@@ -137,5 +138,16 @@ public class CategoryBusiness extends BaseBusiness {
         }else{
             return null;
         }
+    }
+
+    public ArrayAdapter getAllCategoryArrayAdapter() {
+        List<Category> list = getNotHideCategory();
+        ArrayAdapter arrayAdapter = new ArrayAdapter(context,
+                R.layout.common_auto_complete, list);
+        return arrayAdapter;
+    }
+
+    private List<Category> getNotHideCategory() {
+        return categoryDAO.getCategorys(" and state=1");
     }
 }

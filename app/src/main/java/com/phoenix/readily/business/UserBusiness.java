@@ -7,6 +7,7 @@ import com.phoenix.readily.business.base.BaseBusiness;
 import com.phoenix.readily.database.dao.UserDAO;
 import com.phoenix.readily.entity.Users;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -76,5 +77,24 @@ public class UserBusiness extends BaseBusiness {
         ContentValues contentValues = new ContentValues();
         contentValues.put("state", 0);
         return userDAO.updateUser(condition, contentValues);
+    }
+
+    public String getUserNameByUserId(String userId) {//1,2,3,
+        //[1,2,3]-->[王小强，小李，小张]
+        List<Users> list = getUserListByUserIdArray(
+                userId.split(","));
+        String name = "";
+        for (int i = 0; i < list.size(); i++) {
+            name += list.get(i).getUserName()+",";
+        }
+        return name;//王小强,小李,小张
+    }
+
+    public List<Users> getUserListByUserIdArray(String[] userIds){
+        List<Users> list = new ArrayList<>();
+        for (int i = 0; i < userIds.length; i++) {
+            list.add(getUserByUserId(Integer.valueOf(userIds[i])));
+        }
+        return list;
     }
 }

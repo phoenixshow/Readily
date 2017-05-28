@@ -3,10 +3,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/user_list_ll"
+    android:background="@drawable/bg_main"
     >
-    <ListView
+    <ExpandableListView
         style="@style/ListViewStyle"
-        android:id="@+id/user_list_lv"
+        android:id="@+id/category_list_elv"
         />
 </LinearLayout>

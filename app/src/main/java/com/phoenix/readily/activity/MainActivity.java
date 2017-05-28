@@ -67,6 +67,10 @@ public class MainActivity extends FrameActivity implements SlideMenuView.OnSlide
                 openActivity(CategoryActivity.class);
                 return;
             }
+            if (menuName.equals(getString(R.string.grid_payout_add))){//记录消费
+                openActivity(PayoutAddOrEditActivity.class);
+                return;
+            }
         }
     }
 }

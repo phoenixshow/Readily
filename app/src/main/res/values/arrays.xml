@@ -28,6 +28,12 @@
         <item>默认账本</item>
     </string-array>
 
+    <string-array name="PayoutType">
+        <item>均分</item>
+        <item>借贷</item>
+        <item>个人</item>
+    </string-array>
+
     <string-array name="InitDefaultCategoryName">
         <item>买菜</item>
         <item>购物</item>
@@ -46,5 +52,7 @@
         <item>UserDAO</item>
         <item>AccountBookDAO</item>
         <item>CategoryDAO</item>
+        <item>PayoutDAO</item>
+        <item>CreateViewDAO</item>
     </string-array>
 </resources>
