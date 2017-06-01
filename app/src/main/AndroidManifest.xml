@@ -16,11 +16,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.UserActivity"/>
-        <activity android:name=".activity.AccountBookActivity"/>
-        <activity android:name=".activity.CategoryActivity"/>
-        <activity android:name=".activity.CategoryAddOrEditActivity"/>
-        <activity android:name=".activity.PayoutAddOrEditActivity"/>
+        <activity android:name=".activity.UserActivity" />
+        <activity android:name=".activity.AccountBookActivity" />
+        <activity android:name=".activity.CategoryActivity" />
+        <activity android:name=".activity.CategoryAddOrEditActivity" />
+        <activity android:name=".activity.PayoutAddOrEditActivity" />
+        <activity android:name=".activity.PayoutActivity"></activity>
     </application>
 
 </manifest>

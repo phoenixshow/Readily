@@ -447,7 +447,32 @@ public class PayoutAddOrEditActivity extends FrameActivity implements View.OnCli
     }
 
     private void showPayoutTypeSelectDialog(){
-        //TODO
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View view = LayoutInflater.from(this).inflate(R.layout.payout_type_select_list, null);
+        ListView payout_type_lv = (ListView)view.findViewById(R.id.payout_type_lv);
+        builder.setTitle(R.string.button_text_select_type)
+                .setNegativeButton(R.string.button_text_back, null)
+                .setView(view);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+        payout_type_lv.setOnItemClickListener(new OnPayoutTypeItemClickListener(dialog));
+    }
+
+    private class OnPayoutTypeItemClickListener implements AdapterView.OnItemClickListener {
+        private AlertDialog dialog;
+
+        public OnPayoutTypeItemClickListener(AlertDialog dialog){
+            this.dialog = dialog;
+        }
+
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View arg1, int position, long arg3) {
+            String payoutType = (String)adapterView.getAdapter().getItem(position);
+            payout_select_type_et.setText(payoutType);
+            payout_select_user_et.setText("");
+            payoutUserId = "";
+            dialog.dismiss();
+        }
     }
 
     private void showUserSelectDialog(String payoutType){

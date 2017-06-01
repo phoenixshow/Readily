@@ -1,5 +1,6 @@
 package com.phoenix.readily.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -7,7 +8,7 @@ import java.util.Date;
  * 消费/支出
  */
 
-public class Payout {
+public class Payout implements Serializable{
     private int payoutId;
     private int accountBookId;//账本ID外键
     private String accountBookName;//账本名称
