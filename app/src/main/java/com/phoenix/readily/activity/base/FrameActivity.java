@@ -1,5 +1,9 @@
 package com.phoenix.readily.activity.base;
 
+import android.Manifest;
+import android.annotation.TargetApi;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
@@ -15,11 +19,14 @@ import com.phoenix.readily.R;
 import com.phoenix.readily.view.SlideMenuItem;
 import com.phoenix.readily.view.SlideMenuView;
 
+import java.util.ArrayList;
+
 /**
  * Created by flashing on 2017/5/12.
  */
 
 public class FrameActivity extends BaseActivity {
+    private final int SDK_PERMISSION_REQUEST = 127;
     private SlideMenuView slideMenuView;
 
     @Override
@@ -27,6 +34,8 @@ public class FrameActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);//设置无标题栏
         setContentView(R.layout.activity_main);
+
+        getPersimmions();
     }
 
     protected void appendMainBody(int resId){
@@ -68,5 +77,36 @@ public class FrameActivity extends BaseActivity {
     protected void removeBottomBox(){
         slideMenuView = new SlideMenuView(this);
         slideMenuView.removeBottomBox();
+    }
+
+    @TargetApi(23)
+    private void getPersimmions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ArrayList<String> permissions = new ArrayList<>();
+            if(checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                permissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+            }
+
+            if (permissions.size() > 0) {
+                requestPermissions(permissions.toArray(new String[permissions.size()]), SDK_PERMISSION_REQUEST);
+            }
+        }
+    }
+
+    @TargetApi(23)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode){
+            case SDK_PERMISSION_REQUEST:
+                if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    // 允许
+                }else{
+                    // 不允许
+                    showMsg("您已拒绝授权，无法保证您的数据安全，程序已退出");
+                    finish();
+                }
+                break;
+        }
     }
 }

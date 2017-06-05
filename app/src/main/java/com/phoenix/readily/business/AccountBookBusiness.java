@@ -74,12 +74,6 @@ public class AccountBookBusiness extends BaseBusiness {
         }
     }
 
-//    public boolean deleteAccountBookByAccountBookId(int accountBookId){
-//        String condition = " and accountBookId="+accountBookId;
-//        boolean result = accountBookDAO.deleteAccountBook(condition);
-//        return result;
-//    }
-
     public boolean updateAccountBook(AccountBook accountBook){
         return insertOrUpdateAccountBook(accountBook, false);
     }
@@ -116,8 +110,32 @@ public class AccountBookBusiness extends BaseBusiness {
         }
     }
 
-    //根据用户ID隐藏用户
-    public boolean hideAccountBookByAccountBookId(int accountBookId){
+    //根据账本ID删除账本
+    public boolean deleteAccountBookByAccountBookId(int accountBookId) {
+        accountBookDAO.getDatabase().beginTransaction();
+//		accountBookDAO.beginTransaction();
+        try{
+            boolean result = hideAccountBookByAccountBookId(accountBookId);
+            boolean result2 = true;
+            if(result){
+                //删除该账本下的消费记录
+                PayoutBusiness payoutBusiness = new PayoutBusiness(context);
+                result2 = payoutBusiness.deletePayoutByAccountBookId(accountBookId);
+            }
+            if(result && result2){
+                accountBookDAO.setTransactionSuccessful();
+                return true;
+            }else{
+                return false;
+            }
+        } catch (Exception e){
+            return false;
+        } finally {
+            accountBookDAO.endTransaction();
+        }
+    }
+
+    public boolean hideAccountBookByAccountBookId(int accountBookId) {
         String condition = " accountBookId="+accountBookId;
         ContentValues contentValues = new ContentValues();
         contentValues.put("state", 0);
@@ -132,5 +150,10 @@ public class AccountBookBusiness extends BaseBusiness {
         }else{
             return null;
         }
+    }
+
+    public String getAccountBookNameByAccountId(int accountBookid){
+        AccountBook accountBook = getAccountBookByAccountBookId(accountBookid);
+        return accountBook==null ? null : accountBook.getAccountBookName();
     }
 }

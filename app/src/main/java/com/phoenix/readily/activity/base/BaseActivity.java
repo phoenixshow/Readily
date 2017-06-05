@@ -2,6 +2,7 @@ package com.phoenix.readily.activity.base;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -16,6 +17,8 @@ import java.lang.reflect.Field;
  */
 
 public class BaseActivity extends Activity {
+    private ProgressDialog progressDialog;
+
     protected void showMsg(String msg){
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
@@ -60,5 +63,18 @@ public class BaseActivity extends Activity {
                 .setPositiveButton(R.string.button_text_yes, clickListener)
                 .setNegativeButton(R.string.button_text_no, null)
                 .show();
+    }
+
+    protected void showProgressDialog(int titleResId, int msgResId){
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle(titleResId);
+        progressDialog.setMessage(getString(msgResId));
+        progressDialog.show();
+    }
+
+    protected void dismissProgressDialog(){
+        if (progressDialog != null){
+            progressDialog.dismiss();
+        }
     }
 }

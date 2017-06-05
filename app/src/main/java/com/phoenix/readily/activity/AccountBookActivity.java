@@ -83,6 +83,9 @@ public class AccountBookActivity extends FrameActivity implements SlideMenuView.
         menu.setHeaderIcon(R.drawable.account_book_small_icon);
         menu.setHeaderTitle(accountBook.getAccountBookName());
         createContextMenu(menu);
+        if (accountBook.getIsDefault() == 1){
+            menu.findItem(2).setEnabled(false);
+        }
     }
 
     @Override
@@ -107,22 +110,26 @@ public class AccountBookActivity extends FrameActivity implements SlideMenuView.
     }
 
     private void delete() {
-//        String msg = getString(R.string.dialog_message_account_book_delete,
-//                new Object[]{accountBook.getAccountBookName()});
-//        showAlertDialog(R.string.dialog_title_delete, msg, new OnDeleteClickListener());
+        String msg = getString(
+                R.string.dialog_message_account_book_delete,
+                new Object[]{accountBook.getAccountBookName()});
+        showAlertDialog(R.string.dialog_title_delete, msg,
+                new OnDeleteClickListener());
     }
 
-//    private class OnDeleteClickListener implements DialogInterface.OnClickListener{
-//        @Override
-//        public void onClick(DialogInterface dialog, int which) {
-//            boolean result = accountBookBusiness.hideAccountBookByAccountBookId(accountBook.getAccountBookId());
-//            if (result){
-//                initData();
-//            }else {
-//                showMsg(getString(R.string.tips_delete_fail));
-//            }
-//        }
-//    }
+    private class OnDeleteClickListener implements DialogInterface.OnClickListener{
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            boolean result = accountBookBusiness.
+                    deleteAccountBookByAccountBookId(
+                            accountBook.getAccountBookId());
+            if (result){
+                initData();
+            }else {
+                showMsg(getString(R.string.tips_delete_fail));
+            }
+        }
+    }
 
     private void showAccountBookAddOrEditDialog(AccountBook accountBook){
         View view = getInflater().inflate(R.layout.account_book_add_or_edit, null);

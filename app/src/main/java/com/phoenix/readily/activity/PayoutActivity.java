@@ -149,10 +149,10 @@ public class PayoutActivity extends FrameActivity implements SlideMenuView.OnSli
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             //拿到条目实体，绑定适配器数据、关闭对话框
-            accountBook = (AccountBook)parent.getAdapter().getItem(position);
-            initData();
+                accountBook = (AccountBook)parent.getAdapter().getItem(position);
+        initData();
             dialog.dismiss();
-        }
+    }
     }
 
     private void delete(Payout payout){

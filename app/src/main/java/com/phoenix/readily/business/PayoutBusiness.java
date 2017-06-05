@@ -72,4 +72,20 @@ public class PayoutBusiness extends BaseBusiness {
         contentValues.put("state", 0);
         return payoutDAO.updatePayout(condition, contentValues);
     }
+
+    public boolean deletePayoutByAccountBookId(int accountBookId){
+        String condition = " accountBookId=" + accountBookId;
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("state", 0);
+        return payoutDAO.updatePayout(condition, contentValues);
+    }
+
+    public List<Payout> getPayouOrderByPayoutUserId(String condition) {
+        condition += " order by payoutUserId";
+        List<Payout> list = payoutDAO.getPayouts(condition);
+        if (list != null && list.size() > 0){
+            return list;
+        }
+        return null;
+    }
 }

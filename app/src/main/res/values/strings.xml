@@ -22,6 +22,7 @@
     <string name="title_category">类别管理（%s）</string>
     <string name="title_category_add_or_edit">%s类别</string>
     <string name="title_payout">查询消费-%1$s(%2$s)</string>
+    <string name="title_statistics">统计管理-%s</string>
 
     <string name="button_text_save">保存</string>
     <string name="button_text_cancel">取消</string>
@@ -51,10 +52,13 @@
     <string name="dialog_title_user">%s人员</string>
     <string name="dialog_title_delete">删除提示</string>
     <string name="dialog_title_account_book">%s账本</string>
+    <string name="dialog_title_statistics_progress">统计</string>
+    <string name="dialog_waiting_statistics_progress">正在统计中，请稍候……</string>
 
     <string name="dialog_message_user_delete">您确定要删除%s用户吗？</string>
     <string name="dialog_message_category_delete">您确定要删除%s类别吗？</string>
     <string name="dialog_message_payout_delete">你确定要删除%s消费记录吗？</string>
+    <string name="dialog_message_account_book_delete">%s账本删除后相关消费记录也将被删除，确定？</string>
 
     <string name="check_text_chinese_english_num">%s必须是中文、英文与数字</string>
     <string name="check_text_user_exist">该用户已经存在，请换个用户名称</string>
@@ -85,4 +89,5 @@
     <string name="check_text_payout_user_is_null">请选择消费人</string>
     <string name="check_text_payout_user">均分或借贷请至少选择两个消费人</string>
     <string name="check_text_payout_user2">个人消费请至少选择一个消费人</string>
+    <string name="export_data_fail">导出失败！</string>
 </resources>

@@ -22,6 +22,11 @@
         <item>切换账本</item>
     </string-array>
 
+    <string-array name="SlideMenuStatistics">
+        <item>切换账本</item>
+        <item>导出表格</item>
+    </string-array>
+
     <string-array name="InitDefaultUserName">
         <item>王小强</item>
         <item>小李</item>
