@@ -38,14 +38,16 @@ public class FrameActivity extends BaseActivity {
         getPersimmions();
     }
 
-    protected void appendMainBody(int resId){
+    protected void appendMainBody(View view){
         LinearLayout mainBody = (LinearLayout) findViewById(R.id.main_body_ll);
-        View view = LayoutInflater.from(this).inflate(resId, null);
-        //用代码来动态的设置宽高
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.MATCH_PARENT);
         mainBody.addView(view,layoutParams);
+    }
+    protected void appendMainBody(int resId){
+        View view = LayoutInflater.from(this).inflate(resId, null);
+        appendMainBody(view);
     }
 
     //创建滑动菜单

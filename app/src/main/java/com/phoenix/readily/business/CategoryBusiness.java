@@ -2,6 +2,7 @@ package com.phoenix.readily.business;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 
@@ -9,7 +10,9 @@ import com.phoenix.readily.R;
 import com.phoenix.readily.business.base.BaseBusiness;
 import com.phoenix.readily.database.dao.CategoryDAO;
 import com.phoenix.readily.entity.Category;
+import com.phoenix.readily.entity.CategoryTotal;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -149,5 +152,36 @@ public class CategoryBusiness extends BaseBusiness {
 
     private List<Category> getNotHideCategory() {
         return categoryDAO.getCategorys(" and state=1");
+    }
+
+    public List<CategoryTotal> getCategoryTotalByParentId(
+            int parentId) {
+        String condition = " and parentId="+parentId+" and state=1";
+        return getCategoryTotal(condition);
+    }
+
+    public List<CategoryTotal> getCategoryTotalByRootCategory() {
+        String condition = " and parentId=0 and state=1";
+        return getCategoryTotal(condition);
+    }
+
+    private List<CategoryTotal> getCategoryTotal(String condition) {
+        String sql = "select count(payoutId) as count, " +
+                "sum(amount) as sumAmount, " +
+                "categoryName from v_payout where 1=1 " +
+                condition + " group by categoryId";
+        Cursor cursor = categoryDAO.execSql(sql);
+        List<CategoryTotal> list = new ArrayList<>();
+        while (cursor.moveToNext()){
+            CategoryTotal categoryTotal = new CategoryTotal();
+            categoryTotal.count = cursor.
+                    getString(cursor.getColumnIndex("count"));
+            categoryTotal.sumAmount = cursor.
+                    getString(cursor.getColumnIndex("sumAmount"));
+            categoryTotal.categoryName = cursor.
+                    getString(cursor.getColumnIndex("categoryName"));
+            list.add(categoryTotal);
+        }
+        return list;
     }
 }

@@ -19,9 +19,15 @@ import com.phoenix.readily.activity.base.FrameActivity;
 import com.phoenix.readily.adapter.CategoryAdapter;
 import com.phoenix.readily.business.CategoryBusiness;
 import com.phoenix.readily.entity.Category;
+import com.phoenix.readily.entity.CategoryTotal;
 import com.phoenix.readily.utils.RegexTools;
 import com.phoenix.readily.view.SlideMenuItem;
 import com.phoenix.readily.view.SlideMenuView;
+
+import java.io.Serializable;
+import java.util.List;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.L;
 
 public class CategoryActivity extends FrameActivity implements SlideMenuView.OnSlideMenuListener {
     private ExpandableListView category_list_elv;
@@ -131,6 +137,14 @@ public class CategoryActivity extends FrameActivity implements SlideMenuView.OnS
             case 2://删除
                 delete(category);
                 break;
+            case 3://类别统计
+                List<CategoryTotal> list = categoryBusiness.
+                        getCategoryTotalByParentId(category.getParentId());
+                intent = new Intent();
+                intent.putExtra("total", (Serializable) list);
+                intent.setClass(this, CategoryChartActivity.class);
+                startActivity(intent);
+                break;
         }
         return super.onContextItemSelected(item);
     }
@@ -148,6 +162,15 @@ public class CategoryActivity extends FrameActivity implements SlideMenuView.OnS
             Intent intent = new Intent(this,
                     CategoryAddOrEditActivity.class);
             startActivityForResult(intent, 1);
+            return;
+        }
+        if (item.getItemId() == 1){//统计主类别
+            //这里是要进行所有父类别的统计
+            List<CategoryTotal> list = categoryBusiness.
+                    getCategoryTotalByRootCategory();
+            Intent intent = new Intent(this, CategoryChartActivity.class);
+            intent.putExtra("total", (Serializable) list);
+            startActivity(intent);
             return;
         }
     }
