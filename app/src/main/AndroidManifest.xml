@@ -19,19 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.UserActivity" />
-        <activity android:name=".activity.AccountBookActivity" />
-        <activity android:name=".activity.CategoryActivity" />
-        <activity android:name=".activity.CategoryAddOrEditActivity" />
-        <activity android:name=".activity.PayoutAddOrEditActivity" />
-        <activity android:name=".activity.PayoutActivity" />
-        <activity android:name=".activity.StatisticsActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".activity.UserActivity"/>
+        <activity android:name=".activity.AccountBookActivity"/>
+        <activity android:name=".activity.CategoryActivity"/>
+        <activity android:name=".activity.CategoryAddOrEditActivity"/>
+        <activity android:name=".activity.PayoutAddOrEditActivity"/>
+        <activity android:name=".activity.PayoutActivity"/>
+        <activity android:name=".activity.StatisticsActivity"/>
         <activity android:name=".activity.CategoryChartActivity"/>
 
         <receiver android:name=".receiver.DatabaseBackupReceiver"/>
