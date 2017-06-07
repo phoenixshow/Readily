@@ -13,4 +13,13 @@
         android:paddingLeft="10dp"
         android:id="@+id/top_title_tv"
         />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/app_back"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:layout_centerVertical="true"
+        android:id="@+id/app_back"
+        />
 </RelativeLayout>

@@ -23,6 +23,10 @@ public class BaseActivity extends Activity {
         Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
     }
 
+    protected void showMsg(int resId){
+        Toast.makeText(this, resId, Toast.LENGTH_LONG).show();
+    }
+
     protected void openActivity(Class<?> cls){
         Intent intent = new Intent();
         intent.setClass(this, cls);

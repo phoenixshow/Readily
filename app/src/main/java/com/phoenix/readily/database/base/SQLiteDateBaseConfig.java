@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 
 public class SQLiteDateBaseConfig {
-    private static final String DATABASE_NAME = "readily.db";//数据库名
+    public static final String DATABASE_NAME = "readily.db";//数据库名
     private static final int VERSION = 1;//数据库版本
 
     private static SQLiteDateBaseConfig INSTANCE;

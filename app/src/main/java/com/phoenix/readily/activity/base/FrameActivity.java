@@ -35,7 +35,21 @@ public class FrameActivity extends BaseActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//设置无标题栏
         setContentView(R.layout.activity_main);
 
+        View view = findViewById(R.id.app_back);
+        view.setOnClickListener(new OnBackListener());
+
         getPersimmions();
+    }
+
+    private class OnBackListener implements View.OnClickListener{
+        @Override
+        public void onClick(View v) {
+            finish();
+        }
+    }
+
+    protected void hideTitleBackButton(){
+        findViewById(R.id.app_back).setVisibility(View.GONE);
     }
 
     protected void appendMainBody(View view){

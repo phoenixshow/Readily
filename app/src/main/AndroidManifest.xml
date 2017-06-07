@@ -3,6 +3,7 @@
     package="com.phoenix.readily">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
         android:allowBackup="true"
@@ -31,7 +32,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.CategoryChartActivity"></activity>
+        <activity android:name=".activity.CategoryChartActivity"/>
+
+        <receiver android:name=".receiver.DatabaseBackupReceiver"/>
+        <receiver android:name=".receiver.BootStartReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <service android:name=".service.ServiceDatabaseBackup"/>
     </application>
 
 </manifest>
