@@ -123,6 +123,10 @@ public class CategoryAddOrEditActivity extends FrameActivity implements View.OnC
             Category parentCategory = (Category) category_parentid_sp.
                     getSelectedItem();
             if(parentCategory != null){
+                if (category.getCategoryId() != 0 && category.getCategoryId() == parentCategory.getCategoryId()){
+                    showMsg(getString(R.string.check_text_parent_is_self));
+                    return;
+                }
                 category.setParentId(parentCategory.getCategoryId());
             }
         }
